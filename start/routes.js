@@ -17,3 +17,14 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.post("api/login", "AuthController.login").middleware("guest")
+Route.post("api/register", "AuthController.register").middleware("guest")
+Route.get("api/logout", "AuthController.logout").middleware("auth:api")
+
+Route.get("api/profile", "AuthController.profile").middleware("auth:api")
+
+Route.get("api/memo", "MemoController.getMemo").middleware("auth:api")
+Route.post("api/memo/create", "MemoController.createMemo").middleware("auth:api")
+Route.post("api/memo/update", "MemoController.updateMemo").middleware("auth:api")
+Route.get("api/memo/delete/:id", "MemoController.deleteMemo").middleware("auth:api")
